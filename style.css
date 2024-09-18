@@ -2,24 +2,45 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
     background-color: #1e213f;
     color: #d7e0ff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.container {
-    text-align: center;
+/* Flexbox Container for Timer and To-do List */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
     width: 100%;
+    max-width: 1200px;
+}
+
+.container1, .container2 {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.container1 {
+    text-align: center;
     padding: 10px 0;
 }
 
+/* Timer Styling */
 .timer {
     display: inline-block;
     padding: 10px;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     box-sizing: border-box;
 }
 
@@ -70,13 +91,10 @@ h1 {
 .time {
     font-size: 5rem !important;
     margin: 20px auto;
-
 }
 
-.button-container {
+.buttons {
     margin-top: 20px;
-    display: flex;
-    justify-content: center;
 }
 
 .button {
@@ -94,21 +112,6 @@ h1 {
     background-color: #020323;
 }
 
-.hidden {
-    display: block;
-}
-
-.timer-display {
-    font-size: 5rem;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.buttons {
-    margin-top: 20px;
-
-}
-
 #start, #stop {
     background-color: #2e325a;
     color: #fff;
@@ -121,7 +124,7 @@ h1 {
 }
 
 #stop:hover {
-    background-color: tomato; 
+    background-color: tomato;
 }
 
 #start:hover {
@@ -138,11 +141,114 @@ h1 {
     display: none;
 }
 
+/* To-do List Styling */
+.todo-app {
+    width: 100%;
+    background: #2e325a;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+}
+
+.todo-app h1 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-weight: 14px;
+}
+
+button {
+    background-color: #2e325a;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 30px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+ul li {
+    list-style: none;
+    justify-content: space-between;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(images/unchecked.png);
+    left: 8px;
+}
+
+ul li.checked {
+    color: #555;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background-image: url(images/circle.png);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+ul li span:hover {
+    background: #edeef0;
+}
+
+/* Media Queries for responsiveness */
 @media screen and (min-width: 320px) and (max-width: 600px) {
-    .container {
-        transform: scale(0.9)
+    .container1, .container2 {
+        flex-direction: column;
+        align-items: center;
     }
+    
     .timer {
         width: 500px;
+    }
+
+    .todo-app {
+        margin-top: 40px;
     }
 }
